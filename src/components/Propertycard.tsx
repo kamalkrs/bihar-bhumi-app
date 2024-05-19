@@ -1,28 +1,33 @@
-import { Text, StyleSheet, Image, Dimensions, Alert } from 'react-native'
+import { Text, StyleSheet, Image, Dimensions, Alert, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Box, Column, Row } from './Elements'
-import { IconButton } from 'react-native-paper'
 import { IPropertyType } from '../utils/types'
+import { useNavigation } from '@react-navigation/native'
 
 const window = Dimensions.get('window')
 
 const Propertycard = (item: IPropertyType) => {
+    const navigation = useNavigation<any>();
     return (
-        <Row key={item.id} style={Style.cardView}>
-            <Box style={{ width: 130 }}>
-                <Image source={{ uri: item.photo_front }} style={{ width: '100%', height: 120, objectFit: 'cover' }} />
-            </Box>
-            <Box style={{ padding: 10, flex: 1 }}>
-                <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 10 }}>{item.site_title}</Text>
-                <Text numberOfLines={2} style={{ marginBottom: 5 }}>{item.address}</Text>
-                <Text>Price: {item.total_amount} </Text>
-            </Box>
-            <Column style={{ padding: 5 }}>
-                <IconButton icon={'bookmark-outline'} iconColor='#FFA500' size={20} onPress={() => Alert.alert('hello')} style={{ margin: 0 }} />
-                <IconButton icon={'message-outline'} iconColor='#800884' size={20} onPress={() => Alert.alert('hello')} style={{ margin: 0 }} />
-                <IconButton icon={'whatsapp'} size={20} iconColor='#21AF57' onPress={() => Alert.alert('hello')} style={{ margin: 0 }} />
-            </Column>
-        </Row>
+        <TouchableOpacity onPress={() => navigation.navigate('property-details', { id: item.id })}>
+            <Row key={item.id} style={Style.cardView}>
+                <Box style={{ width: 130 }}>
+                    <Image source={{ uri: item.photo_front }}
+                        defaultSource={require('../assets/logo.png')}
+                        style={{ width: '100%', height: 120, resizeMode: 'cover' }} />
+                </Box>
+                <Box style={{ padding: 10, flex: 1 }}>
+                    <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 10 }}>{item.site_title}</Text>
+                    <Text numberOfLines={2} style={{ marginBottom: 5 }}>{item.address}</Text>
+                    <Text>Price: {item.total_amount} </Text>
+                </Box>
+                {/* <Column style={{ padding: 5 }}>
+                    <IconButton icon={'bookmark-outline'} iconColor='#FFA500' size={20} onPress={() => Alert.alert('hello')} style={{ margin: 0 }} />
+                    <IconButton icon={'message-outline'} iconColor='#800884' size={20} onPress={() => Alert.alert('hello')} style={{ margin: 0 }} />
+                    <IconButton icon={'whatsapp'} size={20} iconColor='#21AF57' onPress={() => Alert.alert('hello')} style={{ margin: 0 }} />
+                </Column> */}
+            </Row>
+        </TouchableOpacity>
     )
 }
 

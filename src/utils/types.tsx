@@ -12,7 +12,8 @@ export interface IUserType {
     name?: string,
     email_id?: string,
     aadhar_number?: string,
-    admin_verified?: boolean
+    admin_verified?: boolean,
+    whatsapp?: string
 }
 
 export interface IPropertyType {

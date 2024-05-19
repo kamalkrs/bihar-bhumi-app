@@ -3,8 +3,9 @@ import React from 'react'
 import { Row } from './Elements'
 import { Icon } from 'react-native-paper'
 
-const Footer = () => {
+const Footer = ({ tab }: { tab: number }) => {
     return (
+
         <Row style={Style.footer}>
             <TouchableOpacity style={Style.button}>
                 <Icon source={'home-outline'} size={20} />

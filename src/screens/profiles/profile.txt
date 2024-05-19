@@ -1,0 +1,124 @@
+import { Text, StyleSheet, ScrollView, Alert, Image, View } from 'react-native'
+import React from 'react'
+import { Box, Flex, Paper, Row, List } from '../../components/Elements'
+import { Badge, Button, Divider, Icon, IconButton } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import Auth from '../../utils/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLogin } from '../../stores/userSlices'
+import { RootState } from '../../stores/stores'
+import { Appconfig } from '../../config/appconfig'
+import { themes } from '../../utils/themes'
+
+const Profile = () => {
+    const navigation = useNavigation<any>();
+    const dispatch = useDispatch();
+
+    const login = useSelector((state: RootState) => state.login)
+
+    const handleLogout = () => {
+        Alert.alert('Are you sure?', 'Do you want to logout?', [
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+            {
+                text: 'OK',
+                onPress: () => {
+                    Auth.logout();
+                    //navigation.navigate('login');
+                    dispatch(setLogin({ id: 0 }));
+                }
+            }])
+    }
+
+    return (
+        <Flex>
+            <ScrollView>
+                <Paper style={{ backgroundColor: '#0aa699', width: '100%', padding: 15 }}>
+                    <Row style={{ justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
+                        <Image source={require('../../assets/user.jpg')} style={{ width: 60, height: 60, borderRadius: 60, resizeMode: 'cover' }} />
+                        <Box style={{ flex: 1 }}>
+                            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#fff' }}>{login.first_name + ' ' + login.last_name}</Text>
+                            <Row style={{ alignItems: 'center', columnGap: 5 }}>
+                                <Text style={{ fontWeight: 'bold', color: '#ddd' }}>{login.mobile_number}</Text>
+                            </Row>
+                        </Box>
+
+                    </Row>
+                </Paper>
+                <Row style={{ gap: 10, marginBottom: 10, paddingHorizontal: 12 }}>
+                    <Button
+                        mode='contained'
+                        style={{ backgroundColor: '#7ed957' }}
+                        icon={'account-outline'}>Personal</Button>
+                    <Button
+                        mode="contained"
+                        icon={'account-outline'}>Business</Button>
+                </Row>
+                <Box style={{ paddingHorizontal: 10 }}>
+                    <Box style={{ backgroundColor: '#fff', borderRadius: 10, marginBottom: 4 }}>
+                        <List.Section>
+                            <List.Item title="Leads/Enquiries" description="View your leads"
+                                left={props => <List.Icon {...props} icon="file-document-outline" />}
+                                right={() => <List.Icon icon="chevron-right" />}
+                                onPress={() => Alert.alert('hello there')}
+                                descriptionStyle={Style.description} />
+                            <Divider />
+                            <List.Item title="Sell Property" description="View Profile"
+                                left={props => <List.Icon {...props} icon="cube-outline" />}
+                                right={() => <List.Icon icon="chevron-right" />}
+                                descriptionStyle={Style.description} />
+                            <Divider />
+                            <List.Item title="Service Catalog" description="Manage your services,edit or delete"
+                                left={props => <List.Icon {...props} icon="cube-outline" />}
+                                right={() => <List.Icon icon="chevron-right" />}
+                                descriptionStyle={Style.description} />
+                            <Divider />
+                            <List.Item title="Mutation Applications" description="Apply for mutation or download"
+                                left={props => <List.Icon {...props} icon="heart-outline" />}
+                                right={() => <List.Icon icon="chevron-right" />}
+                                descriptionStyle={Style.description} />
+                            <Divider />
+                            <List.Item title="Wishlist" description="Saved your liked property"
+                                left={props => <List.Icon {...props} icon="bookmark-outline" />}
+                                right={() => <List.Icon icon="chevron-right" />}
+                                descriptionStyle={Style.description} />
+                        </List.Section>
+                    </Box>
+                    <Box style={{ backgroundColor: '#fff', borderRadius: 10, marginBottom: 4 }}>
+                        <List.Item title="Terms & Conditions"
+                            onPress={() => navigation.navigate('webpage' as never, { title: 'Terms & Condtions', url: Appconfig.Url_Terms_Conditions })}
+                            right={() => <List.Icon icon="chevron-right" />}
+                            descriptionStyle={Style.description} />
+                        <Divider />
+                        <List.Item title="Privacy Policy"
+                            onPress={() => navigation.navigate('webpage', { title: 'Privacy Policy', url: Appconfig.Url_Privacy_Policy })}
+                            descriptionStyle={Style.description}
+                            right={() => <List.Icon icon="chevron-right" />}
+                        />
+                        <Divider />
+                        <List.Item title="Help & Support"
+                            onPress={() => navigation.navigate('webpage', { title: 'Help & Support', url: Appconfig.Url_Contact_Us })}
+                            descriptionStyle={Style.description}
+                            right={() => <List.Icon icon="chevron-right" />}
+                        />
+                    </Box>
+
+                    <Row style={{ justifyContent: 'center', marginVertical: 10 }}>
+                        <Button onPress={handleLogout} mode='contained-tonal'>Logout</Button>
+                    </Row>
+                </Box>
+            </ScrollView >
+        </Flex >
+    )
+}
+
+const Style = StyleSheet.create({
+    description: {
+        fontSize: 12, color: '#888'
+    }
+})
+
+export default Profile

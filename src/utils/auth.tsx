@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { IUserType } from "./types";
 
 const Auth = {
     AUTH_KEY: '@login',
@@ -11,8 +12,9 @@ const Auth = {
         if (json != null) {
             return JSON.parse(json);
         }
+        return null;
     },
-    logout: async() => {
+    logout: async () => {
         await AsyncStorage.removeItem(Auth.AUTH_KEY);
         return true;
     }

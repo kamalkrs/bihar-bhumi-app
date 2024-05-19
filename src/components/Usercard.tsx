@@ -6,7 +6,7 @@ import { Icon } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 
 const Usercard = (item: IUserType) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     return (
         <TouchableOpacity
             key={item.id}
@@ -15,14 +15,10 @@ const Usercard = (item: IUserType) => {
             <Row>
                 <Image source={{ uri: item.image }} defaultSource={require('../assets/logo.png')} style={Style.userPhoto} />
                 <Column style={Style.userInfo}>
-                    <Text style={Style.userName}>{item.name}</Text>
+                    <Text style={Style.userName} numberOfLines={2}>{item.name}</Text>
                     <Text numberOfLines={2}>{item.address}</Text>
                     <Row style={{ alignItems: 'center', gap: 10, marginVertical: 4 }}>
                         <Icon source={'phone-outline'} size={15} color='#000' />
-                        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{item.mobile_number}</Text>
-                    </Row>
-                    <Row style={{ alignItems: 'center', gap: 10, marginBottom: 4 }}>
-                        <Icon source={'whatsapp'} size={15} color='#21AF57' />
                         <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{item.mobile_number}</Text>
                     </Row>
                 </Column>

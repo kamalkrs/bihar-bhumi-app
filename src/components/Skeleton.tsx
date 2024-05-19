@@ -16,7 +16,7 @@ const Skeleton = ({ children, style }: VProps) => {
 
 Skeleton.Ractangle = ({ height }: { height: number }) => {
     return (
-        <View style={{ height: height, backgroundColor: '#ddd' }} />
+        <View style={{ height: height, backgroundColor: '#ddd', marginBottom: 12 }} />
     )
 }
 

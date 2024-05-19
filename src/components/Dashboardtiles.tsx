@@ -1,6 +1,6 @@
 import { Text, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Box, Paper } from './Elements'
+import { Box, Paper, Row } from './Elements'
 import { useNavigation } from '@react-navigation/native'
 
 type TileType = {
@@ -65,9 +65,10 @@ const Dashboardtiles = () => {
     const navigation = useNavigation()
     return (
         <Paper style={{ backgroundColor: '#fff' }}>
-            <Box style={{ paddingLeft: 20, paddingTop: 10 }}>
+            <Row style={{ paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Categories</Text>
-            </Box>
+                <Text style={{ fontSize: 14, fontWeight: 'bold' }}>See All</Text>
+            </Row>
             <Box style={{ padding: 10, flexWrap: 'wrap', flexDirection: 'row' }}>
                 {tiles.map((item: TileType) => <TouchableOpacity onPress={() => navigation.navigate(item.path as never)} key={item.id} style={Style.iconHomeWrapper}>
                     <Image source={item.icon} style={Style.iconHome} />
