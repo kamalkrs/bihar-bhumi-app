@@ -13,4 +13,6 @@ export const Appconfig = {
     Url_Privacy_Policy: 'https://www.biharbhumiseva.in/privacy-policy.php',
     Url_Terms_Conditions: 'https://www.biharbhumiseva.in/terms-conditions.php',
     Url_Contact_Us: 'https://www.biharbhumiseva.in/contact-us.php',
+    GOOGLE_MAP_KEY: 'AIzaSyB5ebdW5ZYc8Q2m9qQOJcRl1fG_bMZcpvM',
+    WHATSAPP_URL: 'https://api.whatsapp.com/send?phone=917765812226'
 }

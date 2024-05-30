@@ -10,6 +10,7 @@ import { themes } from '../../utils/themes'
 import { apiCall, uploadFiles } from '../../utils/dataset'
 import { setLogin } from '../../stores/userSlices'
 import ImagePicker from 'react-native-image-crop-picker'
+import Auth from '../../utils/auth'
 
 const EditProfile = () => {
     const [refreshing, setRefreshing] = useState(false)
@@ -61,6 +62,7 @@ const EditProfile = () => {
         const result = await apiCall('update-details', { user_id: user.id, form: formData });
         if (result.success) {
             dispatch(setLogin(result.data))
+            Auth.setLogin(result.data)
         }
         Toast.show(result.message, 3000);
         setSaving(false)

@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import 'react-native-safe-area-context'
 import { PaperProvider } from "react-native-paper";
 import { themes } from "./src/utils/themes";

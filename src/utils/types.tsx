@@ -34,7 +34,7 @@ export interface IPropertyType {
 export interface Restapi {
     success: boolean,
     message: string,
-    data: any
+    data: any | [] | {}
 }
 
 export interface ParamList extends ParamListBase {

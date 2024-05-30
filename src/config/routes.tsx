@@ -24,7 +24,6 @@ import Myads from "../screens/myads";
 import PropertyDetails from "../screens/property-details";
 import Bhumilogin from "../screens/locker/bhumi-login";
 import Bhumilocker from "../screens/locker/bhumi-locker";
-import Uploadlockfiles from "../screens/locker/upload-lockfiles";
 import Addlockerfile from "../screens/locker/add-locker-files";
 import UploadLockerFiles from "../screens/locker/upload-locker-files";
 import BusinessSignup from "../screens/profiles/business/business-signup";
@@ -38,6 +37,12 @@ import HelpSupport from "../screens/profiles/help-support";
 import Leads from "../screens/profiles/leads";
 import MyServices from "../screens/profiles/my-services";
 import EditProfile from "../screens/profiles/edit-profile";
+import AddService from "../screens/profiles/add-service";
+import ChatUser from "../screens/chat-user";
+import PostPropertyDetails from "../screens/post-property-details";
+import PostPropertyPhoto from "../screens/post-property-photo";
+import PropertyMapview from "../screens/property-map-view";
+import AdMessages from "../screens/ad-messages";
 
 const Stack = createNativeStackNavigator();
 const TabStack = createBottomTabNavigator()
@@ -124,6 +129,8 @@ const AppRouter = () => {
                 <Stack.Screen name="users/co" component={Users} initialParams={{ userType: Appconfig.USER_CO, title: 'CO List' }} />
                 <Stack.Screen name="properties" component={Properties} />
                 <Stack.Screen name="post-property" component={Postproperties} />
+                <Stack.Screen name="post-property-details" component={PostPropertyDetails} />
+                <Stack.Screen name="post-property-photo" component={PostPropertyPhoto} />
                 <Stack.Screen name="property-details" component={PropertyDetails} />
                 <Stack.Screen name="userinfo" component={Userinfo} />
                 <Stack.Screen name="bhumi-login" component={Bhumilogin} />
@@ -142,6 +149,10 @@ const AppRouter = () => {
                 <Stack.Screen name="leads" component={Leads} />
                 <Stack.Screen name="my-services" component={MyServices} />
                 <Stack.Screen name="edit-profile" component={EditProfile} />
+                <Stack.Screen name="add-service" component={AddService} />
+                <Stack.Screen name="chat-user" component={ChatUser} />
+                <Stack.Screen name="property-map-view" component={PropertyMapview} />
+                <Stack.Screen name="ad-messages" component={AdMessages} />
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -52,7 +52,7 @@ const Bhumilocker = () => {
             <ScrollView>
                 <Paper style={{ backgroundColor: '#0aa699', width: '100%', padding: 15 }}>
                     <Row style={{ justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
-                        <Image source={require('../../assets/user.jpg')} style={{ width: 60, height: 60, borderRadius: 60, resizeMode: 'cover' }} />
+                        <Image source={{ uri: login.image }} style={{ width: 60, height: 60, borderRadius: 60, resizeMode: 'cover' }} />
                         <Box style={{ flex: 1 }}>
                             <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }}>{login.first_name + ' ' + login.last_name}</Text>
                             <Row style={{ alignItems: 'center', columnGap: 5 }}>

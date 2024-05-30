@@ -30,11 +30,12 @@ Skeleton.Body = ({ children }: VProps) => {
 
 Skeleton.Text = () => {
     return (
-        <>
+        <View style={{ justifyContent: 'space-between', gap: 10 }}>
             <View style={{ height: 5, backgroundColor: '#ddd', width: '100%' }}></View>
-            <View style={{ height: 5, marginVertical: 10, backgroundColor: '#ddd', width: '75%' }}></View>
-            <View style={{ height: 5, backgroundColor: '#ddd', width: '40%' }}></View>
-        </>
+            <View style={{ height: 5, backgroundColor: '#ddd', width: '75%' }}></View>
+            <View style={{ height: 5, backgroundColor: '#ddd', width: '50%' }}></View>
+            <View style={{ height: 5, backgroundColor: '#ddd', width: '30%' }}></View>
+        </View>
     )
 }
 

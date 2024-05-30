@@ -9,17 +9,15 @@ const Notifications = () => {
     return (
         <Flex>
             <Header title='Notifications' goBack />
-            <ScrollView
+            {/* <ScrollView
                 contentContainerStyle={GlobalStyle.ScrollView}
                 showsVerticalScrollIndicator={false}
-            >
-                <Column style={{ justifyContent: 'center', minHeight: 600 }}>
-                    <Column style={{ alignItems: 'center', gap: 10 }}>
-                        <Icon source={'message-text-outline'} size={60} color='#888' />
-                        <Text style={{ fontSize: 16 }}>No New Notications</Text>
-                    </Column>
-                </Column>
-            </ScrollView>
+            > */}
+            <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Icon source={'message-text-outline'} size={60} color='#888' />
+                <Text style={{ fontSize: 16 }}>No New Notications</Text>
+            </Box>
+            {/* </ScrollView> */}
         </Flex>
     )
 }

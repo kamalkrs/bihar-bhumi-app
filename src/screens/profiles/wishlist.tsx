@@ -77,7 +77,7 @@ const Wishlist = () => {
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
             >
                 {items.map((item: any, sl: number) => (
-                    <Box>
+                    <Box key={'kt' + sl}>
                         <Propertycard key={'prop' + sl} {...item} />
                         <Row style={{ marginBottom: 10, justifyContent: 'flex-end' }}>
                             <Button

@@ -1,4 +1,4 @@
-import { Linking, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { Linking, RefreshControl, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../stores/stores'
@@ -13,25 +13,33 @@ import { IPropertyType } from '../utils/types'
 import Footer from '../components/Footer'
 import { Button, Icon, IconButton, Text } from 'react-native-paper'
 
+
 const Home = () => {
     const [items, setItems] = useState([])
     const [loader, setLoader] = useState(true)
+    const [refreshing, setRefreshing] = useState(false)
 
     useEffect(() => {
-        const loadData = async () => {
-            setLoader(true)
-            const result = await apiCall('properties');
-            if (result.success) {
-                setItems(result.data)
-            }
-            setLoader(false)
-        }
         loadData();
         return () => { }
     }, [])
 
     const navigation = useNavigation();
     const login = useSelector((state: RootState) => state.login)
+
+    const loadData = async () => {
+        const result = await apiCall('properties');
+        if (result.success) {
+            setItems(result.data)
+        }
+        setLoader(false)
+    }
+
+    const actionRefresh = async () => {
+        setRefreshing(true);
+        await loadData();
+        setRefreshing(false);
+    }
 
     return (
         <Flex>
@@ -52,7 +60,10 @@ const Home = () => {
                     onPress={() => navigation.navigate('notifications' as never)}
                     icon={'bell-outline'} size={20} iconColor='#fff' />
             </Header>
-            <ScrollView showsVerticalScrollIndicator={false} style={Style.ScrollView}>
+            <ScrollView
+                showsVerticalScrollIndicator={false} style={Style.ScrollView}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={actionRefresh} />}
+            >
                 <Dashboardtiles />
                 {loader ? <Paper style={{ backgroundColor: '#fff', paddingVertical: 10 }}>
                     <Skeleton.Profile />

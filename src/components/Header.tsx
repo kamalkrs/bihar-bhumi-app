@@ -8,12 +8,13 @@ import { RootState } from '../stores/stores';
 
 interface HeaderInput {
     title: string,
+    subTitle?: string,
     goBack?: boolean,
     children?: React.ReactNode,
     isHome?: boolean
 }
 
-const Header = ({ title, goBack, children, isHome = false }: HeaderInput) => {
+const Header = ({ title, goBack, children, isHome = false, subTitle = '' }: HeaderInput) => {
     const navigation = useNavigation();
     const login = useSelector((state: RootState) => state.login);
 
@@ -28,10 +29,14 @@ const Header = ({ title, goBack, children, isHome = false }: HeaderInput) => {
                         <Text
                             numberOfLines={1}
                             style={{ fontWeight: 'bold', fontSize: 14, color: '#fff' }}>Hi, {login.first_name}</Text>
+                        {subTitle.length > 0 && <Text>{subTitle}</Text>}
                     </Column>
                 </> : <Row style={{ flex: 1, gap: 5, alignItems: 'center' }}>
                     {goBack ? <Appbar.BackAction onPress={() => navigation.goBack()} color='#fff' /> : null}
-                    <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#fff' }}>{title}</Text>
+                    <Column>
+                        <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#fff' }}>{title}</Text>
+                        {subTitle.length > 0 && <Text style={{ color: '#333' }}>{subTitle}</Text>}
+                    </Column>
                 </Row>}
                 <Row style={{ justifyContent: 'flex-end', alignItems: 'center', paddingEnd: 10 }}>
                     {children}
